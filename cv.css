@@ -1,0 +1,46 @@
+.headblock{
+	background-color: #CDCDCD;
+	border-bottom: solid medium black;
+}
+
+.name{
+	font-family: courier, monospace;
+	font-size: 2em;
+	font-weight:bold;
+}
+
+.title{
+
+	font-family: courier, monospace;
+	font-size: 1.3em;
+
+}
+
+.whoami{
+
+}
+
+.whatido{
+
+}
+
+.bioblock{
+	padding-top: 1 em;
+}
+
+.bioleftcol{
+	text-align: right;
+	font-weight: bold;
+	border-right: solid thin #CDCDCD;
+	padding-right: 1 em;
+}
+
+.biotable{
+	border:solid thin black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer{
+	text-align:center;
+}
