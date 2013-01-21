@@ -1,6 +1,12 @@
 .headblock{
 	background-color: #CDCDCD;
 	border-bottom: solid medium black;
+	border-top: solid medium black;
+}
+
+.headshot{
+	margin-top: 10px;
+	text-align:center;
 }
 
 .name{
@@ -25,6 +31,7 @@
 }
 
 .bioblock{
+	margin-top: 10px;
 	padding-top: 1 em;
 }
 
