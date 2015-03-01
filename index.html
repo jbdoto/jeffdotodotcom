@@ -1,102 +1,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-	<head>
-		<link rel="StyleSheet" href="stylesheet/cv.css" type="text/css">
-		<link rel="stylesheet/less" type="text/css" href="stylesheet/cv.less" />
-		<script type="text/javascript">
-		    less = {
-		        env: "production", // or "production"
-		        async: false,       // load imports async
-		        fileAsync: false,   // load imports async when in a page under 
-		                            // a file protocol
-		        poll: 1000,         // when in watch mode, time in ms between polls
-		        functions: {},      // user functions, keyed by name
-		        dumpLineNumbers: "comments", // or "mediaQuery" or "all"
-		        relativeUrls: false,// whether to adjust url's to be relative
-		                            // if false, url's are already relative to the
-		                            // entry less file
-		    };
-		</script>
-		<script src="js/less-1.3.3.min.js" type="text/javascript"></script>
-		<title>Jeffrey Doto: Software Engineer </title>
-	</head>
-	<body>
-		<div id="header">
-			<table>
-				<tr>
-					<td class="name">
-						Jeffrey B. Doto
-					</td>
-				</tr>
-				<tr>
-					<td class="title">
-						Philadelphia-Based Software Engineer
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-			</table>
-		</div>
-		<div class="headshot">
-			<img src="images/jd_headshot.png">
-		</div>
-		<div class="bioblock">
-			<table class="biotable">
-				<tr>
-					<td class="bioleftcol">
-						I Am
-					</td>
-					<td>
-						A dedicated practitioner of the Programming Arts.
-					</td>
-				</tr>
-				<tr>
-					<td class="bioleftcol">
-						I Work
-					</td>
-					<td>
-						At Comcast as a Software Engineer.
-					</td>
-				</tr>
-				<tr>
-					<td class="bioleftcol">
-						I Like
-					</td>
-					<td>
-						Music. Cooking. Fixing Things.
-					</td>
-				</tr>
-				<tr>
-					<td class="bioleftcol">
-						Social Media
-					</td>
-					<td>
-						<a href="http://twitter.com/jbdoto"><img src="images/twitter.png"></a><a href="http://www.linkedin.com/pub/jeffrey-doto/2/818/759"><img src="images/linked_in.png"></a>
-					</td>
-				</tr>
-				<tr>
-					<td class="bioleftcol">
-						Music
-					</td>
-					<td>
-						<a href="https://soundcloud.com/popmeetsthevoid">Pop Meets The Void</a>
-					</td>
-				</tr>
-				<tr>
-					<td class="bioleftcol">
-						Communicate
-					</td>
-					<td>
-						<a href="mailto:info@jeffdoto.com?subject=Inquiry%20from%20jeffdoto.com">info@jeffdoto.com</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div>
-			<p id="footer">
-				Copyright (c) Jeffrey Doto, 2010.
-			</p>
-		</div>
-	</body>
+<head>
+    <link rel="stylesheet/less" type="text/css" href="stylesheet/cv.less"/>
+    <script type="text/javascript">
+        less = {
+            env: "production", // or "production"
+            async: false,       // load imports async
+            fileAsync: false,   // load imports async when in a page under
+                                // a file protocol
+            poll: 1000,         // when in watch mode, time in ms between polls
+            functions: {},      // user functions, keyed by name
+            dumpLineNumbers: "comments", // or "mediaQuery" or "all"
+            relativeUrls: false // whether to adjust url's to be relative
+                                // if false, url's are already relative to the
+                                // entry less file
+        };
+    </script>
+    <script src="js/less-1.3.3.min.js" type="text/javascript"></script>
+    <title>Jeffrey Doto</title>
+</head>
+<body>
+<div id="header">
+    <table>
+        <tr>
+            <td class="name">
+                Jeffrey Doto
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="image">
+    <div class="trick"></div>
+    <img src="images/plugboard_retouched.png" alt="plug_panel">
+</div>
+
+<div class="social_media">
+    <div class="box">
+        <a href="http://twitter.com/jbdoto">
+            <img src="images/twitter.png" alt="twitter_button"/>
+        </a>
+    </div>
+    <div class="box">
+        <a href="http://www.linkedin.com/pub/jeffrey-doto/2/818/759">
+            <img src="images/linkedin.png" alt="linked_in_button"/>
+        </a>
+    </div>
+    <div class="box">
+        <a href="http://github.com/jbdoto">
+            <img src="images/github.jpg" alt="github_button"/>
+        </a>
+    </div>
+    <div class="box">
+        <a href="http://soundcloud.com/jbdoto">
+            <img src="images/soundcloud.png" alt="soundclound"/>
+        </a>
+    </div>
+</div>
+
+<div class="sounds">
+    <div class="box">
+        <iframe width="100%" height="166" scrolling="no" frameborder="no"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/109507532&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </div>
+    <div class="box">
+        <iframe width="100%" height="166" scrolling="no" frameborder="no"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/161812848&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </div>
+
+</div>
+
+<div>
+    <p id="footer">
+        Copyright (c) Jeffrey Doto, 2015.
+    </p>
+</div>
+
+</body>
 </html>

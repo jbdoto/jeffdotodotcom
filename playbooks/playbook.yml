@@ -1,0 +1,21 @@
+# playbook.yml
+---
+- hosts: jeffdoto.com
+  tasks:
+    - name: 1. install Apache
+      apt: name=apache2 state=present
+
+    - name: 2. start Apache
+      service: name=apache2 state=running enabled=yes
+
+    - name: 3. copy site
+      copy: src=../index.html dest=/var/www/html/index.html mode=0664
+
+    - name: 4. copy js
+      copy: src=../js/ dest=/var/www/html/js mode=0644
+
+    - name: 5. copy stylesheet
+      copy: src=../stylesheet/ dest=/var/www/html/stylesheet mode=0644
+
+    - name: 6. copy images
+      copy: src=../images/ dest=/var/www/html/images

@@ -1,66 +1,72 @@
-.grayblock{
-	background-color: #CDCDCD;
-	border-bottom: solid medium black;
-	border-top: solid medium black;
+.grayblock {
+  background-color: #CDCDCD;
+  border-bottom: solid medium black;
+  border-top: solid medium black;
 }
 
-#header{
-	.grayblock;
+#header {
+  .grayblock;
 }
 
-#footer{
-	padding-top: 1em;
-	padding-bottom: 1em;
-	text-align:center;
-	clear: both;
-	font-weight: bold;
-	.grayblock;
+#footer {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  clear: both;
+  font-weight: bold;
+  font-size: .5em;
+  .grayblock;
 }
 
-.headshot{
-	margin-top: 1em;
-	margin-bottom: 1em;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
+.image {
+  font-size: 5px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
-.name{
-	font-family: courier, monospace;
-	font-size: 2em;
-	font-weight:bold;
+.image img {
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 100%;
+  max-width: 100%;
 }
 
-.title{
-
-	font-family: courier, monospace;
-	font-size: 1.3em;
+.trick {
+  padding-top: 1em;
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
 }
 
-.whoami{
-
+.name {
+  font-family: courier, monospace;
+  font-size: 2em;
+  font-weight: bold;
 }
 
-.whatido{
-
+.title {
+  font-family: courier, monospace;
+  font-size: 1.3em;
 }
 
-.bioblock{
-	margin-top: 1em;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 1em;
+.social_media {
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
-.bioleftcol{
-	text-align: right;
-	font-weight: bold;
-	border-right: solid thin #CDCDCD;
-	padding-right: 1em;
+.box{
+  display: table-cell;
+  text-align: center;
 }
 
-.biotable{
-	border:solid thin black;
-	margin-left: auto;
-	margin-right: auto;
+.sounds{
+  .social_media;
 }
+
+
