@@ -7,6 +7,7 @@
 
     - name: 2. start Apache
       service: name=apache2 state=running enabled=yes
+      ignore_errors: true
 
     - name: 3. copy site
       copy: src=../index.html dest=/var/www/html/index.html mode=0664
