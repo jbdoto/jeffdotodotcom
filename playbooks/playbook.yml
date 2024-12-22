@@ -1,22 +1,128 @@
 # playbook.yml
 ---
-- hosts: jeffdoto.com
+- hosts: jeffdoto_new
+  become: true
+  vars:
+    domain_name: "jeffdoto.com"
+    acme_email: "jeffdoto@gmail.com"
+    acme_directory: "https://acme-v02.api.letsencrypt.org/directory"
+    ssl_cert_dir: "/etc/ssl/certs"
+    ssl_key_dir: "/etc/ssl/private"
+    webroot_dir: "/var/www/html"
+
   tasks:
-    - name: 1. install Apache
-      apt: name=apache2 state=present
+    - name: 1. Install required packages
+      apt:
+        name:
+          - apache2
+          - python3-acme
+          - python3-certbot
+          - python3-openssl
+          - certbot
+        state: present
+        update_cache: yes
 
-    - name: 2. start Apache
-      service: name=apache2 state=running enabled=yes
-      ignore_errors: true
+    - name: 2. Enable SSL module in Apache
+      community.general.apache2_module:
+        name: ssl
+        state: present
 
-    - name: 3. copy site
-      copy: src=../index.html dest=/var/www/html/index.html mode=0664
+#     - name: 3. Start and enable Apache service
+#       service:
+#         name: apache2
+#         state: started
+#         enabled: yes
 
-    - name: 4. copy js
-      copy: src=../js/ dest=/var/www/html/js mode=0644
+    - name: 4. Copy site index
+      copy:
+        src: ../index.html
+        dest: "{{ webroot_dir }}/index.html"
+        mode: "0664"
 
-    - name: 5. copy stylesheet
-      copy: src=../stylesheet/ dest=/var/www/html/stylesheet mode=0644
+    - name: 5. Copy js
+      copy:
+        src: ../js/
+        dest: "{{ webroot_dir }}/js"
+        mode: "0644"
 
-    - name: 6. copy images
-      copy: src=../images/ dest=/var/www/html/images
+    - name: 6. Copy stylesheet
+      copy:
+        src: ../stylesheet/
+        dest: "{{ webroot_dir }}/stylesheet"
+        mode: "0644"
+
+    - name: 7. Copy images
+      copy:
+        src: ../images/
+        dest: "{{ webroot_dir }}/images"
+
+    - name: Stop Apache for initial certificate generation
+      service:
+        name: apache2
+        state: stopped
+
+    - name: Obtain SSL certificate using certbot
+      command: >
+        certbot certonly
+        --standalone
+        --non-interactive
+        --agree-tos
+        --email {{ acme_email }}
+        -d {{ domain_name }}
+      register: certbot_result
+      failed_when: certbot_result.rc != 0
+
+    - name: Verify certificate files exist
+      stat:
+        path: "/etc/letsencrypt/live/{{ domain_name }}/{{ item }}"
+      register: cert_files
+      loop:
+        - fullchain.pem
+        - privkey.pem
+      failed_when: not cert_files.stat.exists
+
+
+    # Update the SSL Apache configuration to use certbot's certificate paths
+    - name: Create SSL Apache configuration
+      copy:
+        dest: /etc/apache2/sites-available/jeffdoto-ssl.conf
+        content: |
+          <VirtualHost *:443>
+              ServerName {{ domain_name }}
+              DocumentRoot {{ webroot_dir }}
+
+              SSLEngine on
+              SSLCertificateFile      /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
+              SSLCertificateKeyFile   /etc/letsencrypt/live/{{ domain_name }}/privkey.pem
+
+              <Directory {{ webroot_dir }}>
+                  Options FollowSymLinks
+                  AllowOverride All
+                  Require all granted
+              </Directory>
+
+              ErrorLog ${APACHE_LOG_DIR}/{{ domain_name }}-error.log
+              CustomLog ${APACHE_LOG_DIR}/{{ domain_name }}-access.log combined
+          </VirtualHost>
+      when: cert_files is success
+
+    - name: Start Apache after certificate generation
+      service:
+        name: apache2
+        state: started
+      when: cert_files is success
+
+    - name: Enable SSL module
+      apache2_module:
+        name: ssl
+        state: present
+
+    - name: Enable SSL site
+      command: a2ensite jeffdoto-ssl
+      notify: Reload Apache
+
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
